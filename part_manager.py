@@ -1,6 +1,9 @@
 from tkinter import *
+from db import Database
+db = Database('store.db')
 def populate_list():
-    print('Populate')
+    for row in db.fetch():
+        parts_list.insert(END,row)
 def add_item():
     print("Add")
 def remove_item():
@@ -35,7 +38,7 @@ retailer_entry.grid(row=1,column=1)
 price_text = StringVar()
 price_label = Label(app, text='Price',font=("bold",14),pady=20)
 price_label.grid(row=1,column=2,sticky=W)
-price_entry = Entry(app,textvariable=part_text)
+price_entry = Entry(app,textvariable=price_text)
 price_entry.grid(row=1,column=3)
 # Parts List (listbox)
 parts_list = Listbox(app,height=8,width=50,border=0)
